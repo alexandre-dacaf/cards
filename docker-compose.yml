@@ -2,6 +2,7 @@ version: "3.9"
 services:
     api:
         build: ./api
+        restart: always
         ports:
         - "3030:3030"
         depends_on:
@@ -9,10 +10,15 @@ services:
 
     mongo:
       image: "mongo"
+      restart: always
       ports:
         - "27017:27017"
       volumes:
         - data:/data/db
+      # environment:
+      #   MONGO_INITDB_DATABASE: "cards"
+      #   MONGO_INITDB_ROOT_USERNAME: "cards_admin"
+      #   MONGO_INITDB_ROOT_PASSWORD: "cards_admin"
 
 volumes:
   data:
